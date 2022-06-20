@@ -1,0 +1,70 @@
+{
+    "name": "vuetify-boilerplate",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite --host",
+        "build": "tsc && vite build && node move_html.js",
+        "preview": "vite preview",
+        "start": "npm run mock & npm run dev",
+        "mock": "dm server -t ./src/mocks/ -w ./src/api/"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.0.2",
+        "@commitlint/config-conventional": "^17.0.2",
+        "@types/node": "^17.0.31",
+        "@vue/runtime-dom": "^3.2.37",
+        "commitizen": "^4.2.4",
+        "cross-env": "^7.0.3",
+        "customize-cra": "^1.0.0",
+        "cz-customizable": "^6.3.0",
+        "globby": "11",
+        "lint-staged": "^13.0.2",
+        "sass": "^1.51.0",
+        "stylelint": "^14.9.1",
+        "stylelint-config-prettier": "^9.0.3",
+        "stylelint-config-recess-order": "^3.0.0",
+        "stylelint-config-standard": "^26.0.0",
+        "stylelint-scss": "^4.2.0",
+        "typescript": "^4.5.4",
+        "vite": "^2.9.7",
+        "vite-plugin-vue2": "^2.0.0",
+        "vue-template-compiler": "^2.6.14"
+    },
+    "dependencies": {
+        "@dseven/utils": "^0.0.1",
+        "@vue/composition-api": "^1.6.1",
+        "api-manage": "^2.3.0",
+        "axios": "^0.27.2",
+        "css.preset": "^0.2.0",
+        "data-mock": "^2.1.0",
+        "normalize.css": "^8.0.1",
+        "pinia": "^2.0.14",
+        "vue": "2.6.14",
+        "vue-router": "3.5.3",
+        "vuetify": "^2.6.5"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-customizable"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "commit-msg": "commitlint -e $GIT_PARAMS"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{ts,tsx,less,css,json}": [
+            "prettier --write",
+            "npm run lint",
+            "git add ."
+        ]
+    }
+}
